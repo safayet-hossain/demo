@@ -1,7 +1,8 @@
 <template>
-    <div id="hlw">
+    <div >
 <h1>HOMEPAGE</h1>
 <h1>nogor solution</h1>
+
     </div>
 </template>
 
