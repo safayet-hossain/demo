@@ -2,7 +2,7 @@ import {createApp} from 'vue'
 
 import App from './App.vue'
 
-// import Hello from './hello.vue'
+// import Hello from './home.vue'
 // import practice from './practice.vue'
 import router from './route.js'
 // import {  } from 'vue-router'
