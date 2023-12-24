@@ -3,10 +3,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 import home from './components/home.vue';
 import login from './components/login.vue';
 import profile from './components/profile.vue';
-import Nsl from './components/Nsl.vue'
-// import home from './components/home.vue';
-
-
+import Nsl from './components/Nsl.vue';
 const routes = [
     {
         name: 'home',
