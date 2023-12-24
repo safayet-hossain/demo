@@ -1,13 +1,17 @@
 <template>
   <div>
-    <!-- <table-list :data="example_object"></table-list> -->
-    <List :data="example_object"
-      ><template v-slot:result>
-        <h1>result section :{{ result }}</h1>
+    <List :data="example_object">
+      <template v-slot:result>
+        <h2>result section :{{ result }}</h2>
+        <h2>NAME :{{ name }}</h2>
+        <h2>Email :{{ Email }}</h2>
       </template>
     </List>
-
-    <!-- <h1>{{ name }}</h1> -->
+    <h1>{{ count }}</h1>
+    <h1>
+      <button v-on:click="count = count + 1">+</button>
+      <button v-on:click="count = count - 1">-</button>
+    </h1>
   </div>
 </template>
 <script>
@@ -18,6 +22,8 @@ export default {
   inject: ["name", "Email", "result"],
   data() {
     return {
+      count: 0,
+
       example_object: [
         {
           name: "shehab",
@@ -41,6 +47,13 @@ export default {
         },
       ],
     };
+  },
+  watch: {
+    count(val) {
+      if (val > 5) {
+        alert("stop");
+      }
+    },
   },
 };
 </script>
