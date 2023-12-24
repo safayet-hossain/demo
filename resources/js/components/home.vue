@@ -12,6 +12,7 @@
       <button v-on:click="count = count + 1">+</button>
       <button v-on:click="count = count - 1">-</button>
     </h1>
+    <input type="text" v-model="phone" />
   </div>
 </template>
 <script>
@@ -23,6 +24,7 @@ export default {
   data() {
     return {
       count: 0,
+      phone: "",
 
       example_object: [
         {
@@ -48,7 +50,14 @@ export default {
       ],
     };
   },
+  // watch: {},
   watch: {
+    phone(newval) {
+      // console.log(newval);
+      if (isNaN(newval)) {
+        alert("type number only");
+      }
+    },
     count(val) {
       if (val > 5) {
         alert("stop");
