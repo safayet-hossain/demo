@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Student;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +24,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {return view('app');})->name('application');
 
-Route::get('/abc', function () {return view('hello');})->name('hello');
-Route::get('/123', function () {return view('practice');})->name('practice');
+// Route::get('/abc', function () {return view('hello');})->name('hello');
+// Route::get('/123', function () {return view('practice');})->name('practice');
+Route::post('/save',[StudentController::class,'datastore'])->name('data.store');
+Route::get('/getdata',[StudentController::class, 'getdata'])->name('get.data');
+Route::get('/editdata/{id}',[StudentController::class, 'editdata'])->name('edit.data');
+Route::post('/updatedata/{id}',[StudentController::class, 'updatedata'])->name('update.data');
+Route::get('/student_delete/{id}', [StudentController::class, 'delete'])->name('student.delete');
 
+//customer
+
+Route::post('/customer_create',[CustomerController::class,'datasave'])->name('customer.create');
+Route::get('/get_customer_data',[CustomerController::class,'customerdata'])->name('customer.getdata');
+Route::get('/customer/editdata/{id}',[CustomerController::class, 'edit'])->name('customer_edit.data');
+Route::post('/Customer_updatedata/{id}',[CustomerController::class,'update'])->name('customer_update.data');
+Route::get('/Customer_delete/{id}',[CustomerController::class,'deletedata'])->name('custome.delete');

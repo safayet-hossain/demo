@@ -20,7 +20,7 @@ export default {
 
   mounted() {
     const route = useRoute();
-    console.log(route.params.name);
+    // console.log(route.params.name);
     this.profilename = route.params.name;
   },
 };

@@ -50,12 +50,13 @@ export default {
       ],
     };
   },
-  // watch: {},
+  // watch: {30%+3day},
   watch: {
-    phone(newval) {
+    phone(newval, oldvalue) {
       // console.log(newval);
       if (isNaN(newval)) {
         alert("type number only");
+        this.mobile = oldvalue;
       }
     },
     count(val) {
