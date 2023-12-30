@@ -112,6 +112,8 @@ export default {
                 .then((res) => { 
                     console.log('ok');
                     alert( "profile updated",this.user_form.name);
+                    this.$router.push({ path: '/userlist' });
+
                 });
         },
    

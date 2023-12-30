@@ -64,6 +64,8 @@ export default {
                 // console.log('ok');
                 this.user_list = res.data;
                 // console.log(this.user_list);
+                this.$router.push({ path: '/userlist' });
+
             });
         },
         deleteuser(updateid) {
@@ -73,6 +75,8 @@ export default {
                 .then((res) => {
                     console.log("deleted", res.data);
                     alert("want to delete?");
+                    this.$router.push({ path: '/userlist' });
+
                 });
         },
     },

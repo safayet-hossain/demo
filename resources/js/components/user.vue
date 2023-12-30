@@ -67,6 +67,8 @@ export default {
             axios.post("laravel10-vue3/public/customer_create", formData).then((res) => {
                 console.log(res.data);
                 alert("Customer created successfully");
+                // /userlist
+                this.$router.push({ path: '/userlist' });
             });
         },
     },
