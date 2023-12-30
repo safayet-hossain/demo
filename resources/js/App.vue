@@ -1,20 +1,5 @@
 <template>
-  <router-link to="/home">home</router-link>
-  <br />
 
-  <router-link to="/profile">profile</router-link>
-
-  <br />
-  <router-link to="/profile/shehab">1st Profile</router-link>
-  <br />
-  <router-link to="/profile/mehedi">2nd Profile</router-link>
-  <br />
-
-  <router-link to="/login">login </router-link> <br />
-  <router-link to="/student">Student </router-link> <br />
-  <router-link to="/student_list">Student list</router-link>
-
-  <br />
   <router-link to="/user">user</router-link><br>
   <router-link to="/userlist" >UserList</router-link>
   

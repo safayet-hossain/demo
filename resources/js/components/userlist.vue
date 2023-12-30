@@ -1,45 +1,47 @@
 <template>
-    <div>
-        <h1>User List Page</h1>
-    </div>
-    <div>
-        <!-- {{ user_list }} -->
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Skills</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item, index) in user_list" :key="index">
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.Skills }}</td>
-                    <td>{{ item.gender }}</td>
-                    <td>
-                        <router-link
-                            :to="{ path: '/user/' + item.id + '/edit' }"
-                            >Edit</router-link
-                        >
-                        <button
-                            type="submit"
-                            @click.prevent="deleteuser(item.id)"
-                            class="btn btn-primary btn-block mb-4"
-                        >
-                            Delete
-                        </button>
-                    </td>
-                    <!-- <td><router-link to="">delete</router-link></td> -->
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <center>
+        <div>
+            <h1>User List Page</h1>
+        </div>
+        <div>
+            <!-- {{ user_list }} -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th> <hr>
+                        <th scope="col">Name</th> <hr>
+                        <th scope="col">Email</th> <hr>
+                        <th scope="col">Gender</th> <hr>
+                        <th scope="col">Skills</th> <hr>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in user_list" :key="index">
+                        <td>{{ item.id }}</td> <hr>
+                        <td>{{ item.name }}</td> <hr>
+                        <td>{{ item.email }}</td> <hr>
+                        <td>{{ item.gender }}</td> <hr>
+                        <td>{{ item.Skills }}</td> <hr>
+                        <td>
+                            <router-link
+                                :to="{ path: '/user/' + item.id + '/edit' }"
+                                >Edit</router-link
+                            >
+                            <button
+                                type="submit"
+                                @click.prevent="deleteuser(item.id)"
+                                class="btn btn-primary btn-block mb-4"
+                            >
+                                Delete
+                            </button>
+                        </td>
+                        <!-- <td><router-link to="">delete</router-link></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </center>
 </template>
 <script>
 import axios from "axios";
@@ -66,10 +68,12 @@ export default {
         },
         deleteuser(updateid) {
             // console.log("ok", updateid);
-            axios.get('laravel10-vue3/public/Customer_delete/'+updateid).then(res=>{
-                console.log('deleted',res.data);
-                alert('deleted')
-            })
+            axios
+                .get("laravel10-vue3/public/Customer_delete/" + updateid)
+                .then((res) => {
+                    console.log("deleted", res.data);
+                    alert("want to delete?");
+                });
         },
     },
 };

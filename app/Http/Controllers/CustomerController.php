@@ -15,7 +15,7 @@ class CustomerController extends Controller
             'name' => 'required',
             'email' => 'required',
             'Skills' => 'required',
-            'gender' => 'required'
+            'gender' => 'required',
         ]);
 
         Customer::create([
@@ -37,6 +37,7 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $updatedata = Customer::find($id);
+        // dd($updatedata);
         return response()->json($updatedata);
 
     }
@@ -74,6 +75,7 @@ class CustomerController extends Controller
     public function deletedata($id)
     {
         $deletedata = Customer::find($id);
+        // dd($deletedata)
         if ($deletedata) {
             $deletedata->delete();
             return response()->json([

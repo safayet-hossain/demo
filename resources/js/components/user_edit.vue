@@ -1,5 +1,7 @@
 <template>
-    <div>hello edit page</div>
+    <center>
+    <div> <h1>Hello edit page</h1>
+    </div>
 
     <body>
         <div>
@@ -7,18 +9,18 @@
             <form method="post" @submit.prevent="updateform" id="form">
                 <div>
                     <label for="name">Name:</label><input type="text" v-model="user_form.name" name="name" id="name"
-                        placeholder="Enter  your name" />
+                        placeholder="Enter  your name"  required />
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Email address</label>
                     <input name="email" v-model="user_form.email" type="email" class="form-control" id="email"
-                        placeholder="enter your email" />
+                        placeholder="enter your email" required />
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="Skills" name="Skills">Skills</label>
+                        <label class="input-group-text" for="Skills" name="Skills"  >Skills</label>
                     </div>
-                    <select class="custom-select" id="Skills" v-model="user_form.Skills" name="Skills">
+                    <select class="custom-select" id="Skills" v-model="user_form.Skills" name="Skills" required>
                         <option value="">Choose.</option>
                         <option value="laravel">laravel</option>
                         <option value="vue">vue</option>
@@ -43,6 +45,7 @@
             </form>
         </div>
     </body>
+</center>
 </template>
 <script>
 import axios from "axios";
@@ -85,8 +88,9 @@ export default {
                       this.user_form.email = res.data.email;
                       this.user_form.gender = res.data.gender;
                       this.user_form.Skills = res.data.Skills;
-                    //    alert( "profile viewed",this.user_form.name);
+                    //   
                 });
+               
         },
 
 
@@ -107,6 +111,7 @@ export default {
                 )
                 .then((res) => { 
                     console.log('ok');
+                    alert( "profile updated",this.user_form.name);
                 });
         },
    
