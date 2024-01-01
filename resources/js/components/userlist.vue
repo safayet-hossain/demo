@@ -14,6 +14,7 @@
                         <th scope="col">Gender</th> <hr>
                         <th scope="col">Skills</th> <hr>
                         <th scope="col">Degree</th> <hr>
+                        <th scope="col">image</th> <hr>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -24,7 +25,12 @@
                         <td>{{ item.email }}</td> <hr>
                         <td>{{ item.gender }}</td> <hr>
                         <td>{{ item.Skills }}</td> <hr>
-                        <td>{{ item.Degree }}</td> <hr>
+                        <td>
+                            <!-- <div v-for="(item1,index) in JSON.parse(user_list.Degree)" :key="index"> -->
+                                {{item.Degree}}
+                            <!-- </div> -->
+                        </td> <hr>
+                        <td><img :src="'http://localhost/laravel10-vue3/public/storage/uploads/'+item.image" width="100" ></td> <hr>
                         <td>
                             <router-link
                                 :to="{ path: '/user/' + item.id + '/edit' }"
@@ -37,7 +43,7 @@
                             >
                                 Delete
                             </button>
-                        </td>
+                        </td> <hr>
                         <!-- <td><router-link to="">delete</router-link></td> -->
                     </tr>
                 </tbody>
@@ -66,7 +72,7 @@ export default {
                 // console.log('ok');
                 this.user_list = res.data;
                 // console.log(this.user_list);
-                this.$router.push({ path: '/userlist' });
+                // this.$router.push({ path: '/userlist' });
 
             });
         },

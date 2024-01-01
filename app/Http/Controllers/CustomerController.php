@@ -60,6 +60,13 @@ class CustomerController extends Controller
             'gender' => 'required',
         ]);
 
+        $customer_image = '';
+        if ($image = $request->hasFile('image')) {
+            $image = $request->file('image');
+            $customer_image = date('Ymdhsi') . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads/', $customer_image);
+        }
+
         $updatedata = Customer::find($id);
         // dd($updatedata);
         if ($updatedata) {
@@ -68,6 +75,7 @@ class CustomerController extends Controller
                 'email' => $request->email,
                 'Skills' => $request->Skills,
                 'gender' => $request->gender,
+                'image'=>$customer_image,
             ]);
             // dd($updatedata);
         }
