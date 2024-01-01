@@ -13,6 +13,7 @@
                         <th scope="col">Email</th> <hr>
                         <th scope="col">Gender</th> <hr>
                         <th scope="col">Skills</th> <hr>
+                        <th scope="col">Degree</th> <hr>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -23,6 +24,7 @@
                         <td>{{ item.email }}</td> <hr>
                         <td>{{ item.gender }}</td> <hr>
                         <td>{{ item.Skills }}</td> <hr>
+                        <td>{{ item.Degree }}</td> <hr>
                         <td>
                             <router-link
                                 :to="{ path: '/user/' + item.id + '/edit' }"

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->nullable();           
             $table->text('Skills')->nullable();
             $table->text('gender')->nullable();
+            $table->string('Degree')->nullable();
+            // $table->string('image')->nullable();
             $table->timestamps();
         });
     }

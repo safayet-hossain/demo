@@ -16,14 +16,23 @@ class CustomerController extends Controller
             'email' => 'required',
             'Skills' => 'required',
             'gender' => 'required',
+            'Degree'=>'required',
         ]);
 
+        
+        $customer_image = '';
+        if ($image = $request->hasFile('image')) {
+            $image = $request->file('image');
+            $customer_image = date('Ymdhsi') . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads/', $customer_image);
+        }
         Customer::create([
             'name' => $request->name,
             'email' => $request->email,
             'Skills' => $request->Skills,
             'gender' => $request->gender,
-            // 'image'=>$request->image,
+            'Degree' => json_encode( $request->Degree),
+            'image'=>$customer_image,
 
 
         ]);
