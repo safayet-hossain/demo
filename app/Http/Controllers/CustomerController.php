@@ -36,6 +36,7 @@ class CustomerController extends Controller
 
 
         ]);
+        // dd($request->all());
     }
     public function customerdata()
     {
@@ -75,6 +76,7 @@ class CustomerController extends Controller
                 'email' => $request->email,
                 'Skills' => $request->Skills,
                 'gender' => $request->gender,
+                'Degree' => json_encode( $request->Degree),
                 'image'=>$customer_image,
             ]);
             // dd($updatedata);

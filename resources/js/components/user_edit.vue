@@ -1,7 +1,7 @@
 <template>
-    <center>
+    
         <div>
-            <h1>Hello edit page</h1>
+            <h1>Welcome {{ user_form.name }}</h1>
         </div>
 
         <body>
@@ -35,6 +35,7 @@
                         <input type="radio" v-model="user_form.gender" id="gender2" name="gender" value="female" />
                         <label for="gender">Female</label><br />
                     </div>
+
                     <div>
                         <label for="image" class="form-control">Image:</label>
                         <img :src="'http://localhost/laravel10-vue3/public/storage/uploads/' +
@@ -42,35 +43,44 @@
                             " width="200" />
                         <input type="file" name="image" value="" />
                     </div>
-                    <div class="row">
+
+                    <!-- <div class="row">
                         <label>Degree:</label>
                         <div class="form-group">
                             <label for="SSC">
                                 <input v-model="user_form.Degree" type="checkbox" id="SSC" :value="user_form.Degree"
                                     name="Degree[]" />SSC
                             </label>
-                            <label for="HSC">
-                                <input v-model="user_form.Degree" type="checkbox" id="HSC" :value="user_form.Degree"
-                                    name="Degree[]" />HSC
-                            </label>
-                            <br />
-                            <label for="BSC">
-                                <input v-model="user_form.Degree" type="checkbox" id="BSC" :value="user_form.Degree"
-                                    name="Degree[]" />BSC
-                            </label>
-                            <label for="MSC">
-                                <input v-model="user_form.Degree" type="checkbox" id="MSC" :value="user_form.Degree"
-                                    name="Degree[]" />MSC
-                            </label>
+                            
+                        </div>
+                    </div> -->
+
+                    <strong>Degree:</strong>
+                    <div v-for="(item, index) in degrees" :key="index">
+
+                        <div class="form-check form-check-inline">
+                            <span v-if="user_form.Degree.includes(item)">
+                                <input class="form-check-input" type="checkbox" name="Degree[]" id="inlineCheckbox1"
+                                    :value="item" :checked="true" />
+                                <label class="form-check-label" for="inlineCheckbox1">{{ item }}</label>
+                            </span>
+
+                            <span v-else>
+                                <input class="form-check-input" type="checkbox" name="Degree[]" id="inlineCheckbox1"
+                                    :value="item" :checked="false" />
+                                <label class="form-check-label" for="inlineCheckbox1">{{ item }}</label>
+                            </span>
+
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary btn-block mb-4">
                         Update
                     </button>
                 </form>
             </div>
         </body>
-    </center>
+
 </template>
 <script>
 import axios from "axios";
@@ -79,14 +89,17 @@ export default {
     data() {
         return {
             userid: "",
-            user_form: {
-                name: "",
-                email: "",
-                image: "",
-                gender: "",
-                Skills: "",
-                Degree: [],
-            },
+
+                        user_form: {
+                            name: "",
+                            email: "",
+                            image: "",
+                            gender: "",
+                            Skills: "",
+                            Degree: [],
+                        },
+
+            degrees:[ 'MSC', 'SSC', 'HSC', 'BSC']
         };
     },
     mounted() {
@@ -114,8 +127,8 @@ export default {
                     this.user_form.email = res.data.email;
                     this.user_form.gender = res.data.gender;
                     this.user_form.Skills = res.data.Skills;
-                    this.user_form.Degree = res.data.Degree;
-                    console.log("okaa", this.user_form.Degree);
+                    this.user_form.Degree = JSON.parse(res.data.Degree);
+                    // console.log("okaa", this.user_form.Degree);
                 });
         },
 

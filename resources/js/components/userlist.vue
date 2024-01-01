@@ -26,9 +26,9 @@
                         <td>{{ item.gender }}</td> <hr>
                         <td>{{ item.Skills }}</td> <hr>
                         <td>
-                            <!-- <div v-for="(item1,index) in JSON.parse(user_list.Degree)" :key="index"> -->
-                                {{item.Degree}}
-                            <!-- </div> -->
+                            <div v-for="(item, index) in JSON.parse(item.Degree)" :key="index">
+                                {{item}}
+                            </div>
                         </td> <hr>
                         <td><img :src="'http://localhost/laravel10-vue3/public/storage/uploads/'+item.image" width="100" ></td> <hr>
                         <td>
