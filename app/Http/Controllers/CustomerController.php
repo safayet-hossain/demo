@@ -40,7 +40,7 @@ class CustomerController extends Controller
     }
     public function customerdata()
     {
-        $customer = Customer::orderby('gender', 'DESC')->take(100)->get();
+        $customer = Customer::orderby('id', 'DESC')->take(100)->get();
         // dd($customer);
         return response()->json($customer);
     }
@@ -58,6 +58,7 @@ class CustomerController extends Controller
             'email' => 'required|email',
             'Skills' => 'required',
             'gender' => 'required',
+            'Degree' => 'required',
         ]);
 
         $updatedata = Customer::find($id);

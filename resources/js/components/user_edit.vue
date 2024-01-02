@@ -10,7 +10,7 @@
                 <div>
                     <label for="name">Name:</label><input type="text" v-model="user_form.name" name="name" id="name"
                         placeholder="Enter  your name" />
-                <p v-if="error.name" class="text-danger">{{
+                    <p v-if="error.name" class="text-danger">{{
                         error.name
                     }}</p>
                 </div>
@@ -18,7 +18,7 @@
                     <label for="exampleFormControlInput1">Email address</label>
                     <input name="email" v-model="user_form.email" type="email" class="form-control" id="email"
                         placeholder="enter your email" />
-                        <p v-if="error.email" class="text-danger">{{
+                    <p v-if="error.email" class="text-danger">{{
                         error.email
                     }}</p>
                 </div>
@@ -32,14 +32,14 @@
                         <option value="vue">vue</option>
                         <option value="api">api</option>
                     </select>
-                    
+
                 </div>
                 <p v-if="error.Skills" class="text-danger">{{
-                        error.Skills
-                    }}</p>
+                    error.Skills
+                }}</p>
                 <div class="input-group mb-3">
                     <label for="gender">Gender</label> <br />
-                    <input type="radio" v-model="user_form.gender" id="gender1" name="gender" value="male" checked/>
+                    <input type="radio" v-model="user_form.gender" id="gender1" name="gender" value="male" checked />
                     <label for="gender">Male</label><br />
                     <input type="radio" v-model="user_form.gender" id="gender2" name="gender" value="female" checked />
                     <label for="gender">Female</label><br />
@@ -53,9 +53,10 @@
                     <input type="file" name="image" value="" />
                 </div>
 
-            
+
 
                 <strong>Degree:</strong>
+                <!-- {{ degrees }} -->
                 <div v-for="(item, index) in degrees" :key="index">
                     <div class="form-check form-check-inline">
                         <span v-if="user_form.Degree.includes(item)">
@@ -63,14 +64,17 @@
                                 :value="item" :checked="true" />
                             <label class="form-check-label" for="inlineCheckbox1">{{ item }}</label>
                         </span>
-
                         <span v-else>
                             <input class="form-check-input" type="checkbox" name="Degree[]" id="inlineCheckbox1"
                                 :value="item" :checked="false" />
                             <label class="form-check-label" for="inlineCheckbox1">{{ item }}</label>
                         </span>
+
                     </div>
+                    <p v-if="error.Degree" class="text-danger">
+                        {{ error.Degree}}</p> 
                 </div>
+              
 
                 <button type="submit" class="btn btn-primary btn-block mb-4">
                     Update
@@ -92,7 +96,7 @@ export default {
                 email: "",
                 image: "",
                 gender: "",
-                Skills: "",
+                Skills: "", 
                 Degree: [],
             },
             error: {},
@@ -144,6 +148,7 @@ export default {
                 .then((res) => {
                     console.log("ok", this.user_form.Degree);
                     alert("profile updated", this.user_form.name);
+                    
                     this.$router.push({ path: "/user" });
                 });
             this.validate();
@@ -164,6 +169,8 @@ export default {
             if (this.user_form.Degree == "") {
                 this.error.Degree = "Degree is required";
             }
+         
+            
         },
     },
 };
