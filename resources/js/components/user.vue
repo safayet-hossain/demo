@@ -81,7 +81,7 @@
                         <label for="gender">Female</label><br />
                         <small v-if="error.gender" class="text-danger">{{ error.gender
                         }}</small>
-                           
+                        
                     </div>
                     <!-- image -->
                     <div>
@@ -136,14 +136,7 @@
                         }}</small>
                     <br />
 
-                    <!-- <strong>Degree:</strong>
-                    <div v-for="(item, index) in user_form.Degree" :key="index">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="Degree[]" id="inlineCheckbox1"
-                                v-model="item.check" :value="item.check" :checked="item.check" />
-                            <label class="form-check-label" for="inlineCheckbox1">{{ item.name }}</label>
-                        </div>
-                    </div> -->
+                 
                     <br />
 
                     <button
@@ -155,20 +148,21 @@
                 </form>
             </div>
         </body>
-<!-- <index /> -->
+
 <userlist />
-<user_edit />
+<!-- <user_edit /> -->
 </template>
 <script>
-// import index from "./index.vue";
+
 import userlist from "./userlist.vue";
-import user_edit from "./user_edit.vue";
+// import user_edit from "./user_edit.vue";
 import axios from "axios";
 import { stringifyQuery } from "vue-router";
 export default {
     name: "user",
     components:{
-        user_edit,userlist
+        userlist
+        // user_edit,
     },
     data() {
         return {
@@ -199,7 +193,14 @@ export default {
                     // console.log('ok',res.data.user_form.Degree);
                     // /userlist
                     this.$router.push({ path: "/userlist" });
+                    // this.$router.push({ path: "/user" });
                 });
+            //     .catch(error => {
+            //     this.errors = error.res.data;
+            //     console.log('ok');
+
+            // });
+           
             this.validate();
         },
         validate() {
@@ -218,6 +219,7 @@ export default {
             if (this.user_form.Degree == "") {
                 this.error.Degree = "Degree is required";
             }
+            
         },
     },
 };

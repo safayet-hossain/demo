@@ -13,13 +13,13 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:customers',
             'Skills' => 'required',
             'gender' => 'required',
-            'Degree'=>'required',
+            'Degree' => 'required',
         ]);
 
-        
+
         $customer_image = '';
         if ($image = $request->hasFile('image')) {
             $image = $request->file('image');
@@ -31,8 +31,8 @@ class CustomerController extends Controller
             'email' => $request->email,
             'Skills' => $request->Skills,
             'gender' => $request->gender,
-            'Degree' => json_encode( $request->Degree),
-            'image'=>$customer_image,
+            'Degree' => json_encode($request->Degree),
+            'image' => $customer_image,
 
 
         ]);
@@ -40,7 +40,7 @@ class CustomerController extends Controller
     }
     public function customerdata()
     {
-        $customer = Customer::all();
+        $customer = Customer::orderby('gender', 'DESC')->take(100)->get();
         // dd($customer);
         return response()->json($customer);
     }
@@ -49,7 +49,6 @@ class CustomerController extends Controller
         $updatedata = Customer::find($id);
         // dd($updatedata);
         return response()->json($updatedata);
-
     }
     public function update(Request $request, $id)
     {
@@ -61,14 +60,13 @@ class CustomerController extends Controller
             'gender' => 'required',
         ]);
 
-        $customer_image = '';
+        $updatedata = Customer::find($id);
+        $customer_image = $updatedata->image; //for getting old image
         if ($image = $request->hasFile('image')) {
             $image = $request->file('image');
             $customer_image = date('Ymdhsi') . '.' . $image->getClientOriginalExtension();
             $image->storeAs('uploads/', $customer_image);
         }
-
-        $updatedata = Customer::find($id);
         // dd($updatedata);
         if ($updatedata) {
             $updatedata->update([
@@ -76,20 +74,18 @@ class CustomerController extends Controller
                 'email' => $request->email,
                 'Skills' => $request->Skills,
                 'gender' => $request->gender,
-                'Degree' => json_encode( $request->Degree),
-                'image'=>$customer_image,
+                'Degree' => json_encode($request->Degree),
+                'image' => $customer_image,
             ]);
             // dd($updatedata);
-        } 
-        //   dd($updatedata);
-        // dd($request->all());
-        else {
+            //   dd($updatedata);
+            // dd($request->all());
+        } else {
             return response()->json([
                 'status' => 404,
                 'message' => 'No user Found'
             ]);
         }
-
     }
     public function deletedata($id)
     {
@@ -102,15 +98,12 @@ class CustomerController extends Controller
                 "message" => 'deleted'
 
             ], 200);
-
         } else {
             return response()->json([
                 "status" => 404,
                 "message" => 'deleted'
 
             ], 404);
-
         }
-
     }
 }
