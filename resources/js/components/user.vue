@@ -155,13 +155,21 @@
                 </form>
             </div>
         </body>
-  
+<!-- <index /> -->
+<userlist />
+<user_edit />
 </template>
 <script>
+// import index from "./index.vue";
+import userlist from "./userlist.vue";
+import user_edit from "./user_edit.vue";
 import axios from "axios";
 import { stringifyQuery } from "vue-router";
 export default {
     name: "user",
+    components:{
+        user_edit,userlist
+    },
     data() {
         return {
             user_form: {
@@ -171,10 +179,7 @@ export default {
                 gender: "",
                 Skills: "",
                 Degree: [
-                    // { name: "SSC", check: false },
-                    // { name: "HSC", check: false },
-                    // { name: "BSC", check: false },
-                    // { name: "MSC", check: false },
+                  
                 ],
             },
             error: {},

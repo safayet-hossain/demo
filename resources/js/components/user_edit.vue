@@ -147,7 +147,7 @@ export default {
                 .then((res) => {
                     console.log("ok", this.user_form.Degree);
                     alert("profile updated", this.user_form.name);
-                    this.$router.push({ path: "/userlist" });
+                    this.$router.push({ path: "/user" });
                 });
         },
     },

@@ -80,7 +80,7 @@ class CustomerController extends Controller
                 'image'=>$customer_image,
             ]);
             // dd($updatedata);
-        }
+        } 
         //   dd($updatedata);
         // dd($request->all());
         else {
