@@ -5,7 +5,7 @@
 
     <body>
         <div>
-            <h1>User edit Form</h1>
+            <h1>Employee Edit Form</h1>
             <form method="post" @submit.prevent="updateform" id="form">
                 <div>
                     <label for="name">Name:</label><input type="text" v-model="user_form.name" name="name" id="name"

@@ -1,7 +1,25 @@
 <template>
-
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand" href="">Navbar</a>
+ 
   <router-link to="/user">user</router-link><br>
-  <router-link to="/userlist" >UserList</router-link>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <router-link to="/employee/create">Employee</router-link><br>
+  <router-link to="/employee/list">Employee list</router-link><br>
+
+  <!-- <router-link to="/user">user</router-link><br>
+  <router-link to="/userlist" >UserList</router-link> -->
   
   <table-list :data="example_object"></table-list>
 

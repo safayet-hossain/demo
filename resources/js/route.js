@@ -9,6 +9,9 @@ import student_edit  from './components/student_edit.vue';
 import user from './components/user.vue';
 import userlist from "./components/userlist.vue";
 import user_edit from "./components/user_edit.vue";
+import create from "./components/employee/create.vue";
+// import list from "./components/employee/employee_list.vue";
+import employee_list from "./components/employee/employee_list.vue";
 const routes = [
     {
         name: 'home',
@@ -65,6 +68,18 @@ const routes = [
         name: 'user_edit',
         path: '/user/:id/edit',
         component: user_edit
+
+    },
+    {
+        name: 'create',
+        path: '/employee/create',
+        component: create
+
+    },
+    {
+        name: 'employee_list',
+        path: '/employee/list',
+        component: employee_list
 
     },
     

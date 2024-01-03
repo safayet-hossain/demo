@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\Student;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +39,6 @@ Route::get('/get_customer_data',[CustomerController::class,'customerdata'])->nam
 Route::get('/customer/editdata/{id}',[CustomerController::class, 'edit'])->name('customer_edit.data');
 Route::post('/Customer_updatedata/{id}',[CustomerController::class,'update'])->name('customer_update.data');
 Route::get('/Customer_delete/{id}',[CustomerController::class,'deletedata'])->name('custome.delete');
+
+//employee
+Route::post('/employee_create',[EmployeeController::class,'employee_create'])->name('employee.create');
