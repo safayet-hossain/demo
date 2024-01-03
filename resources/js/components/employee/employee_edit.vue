@@ -5,7 +5,7 @@
     <body class="container">
         <div>
             <h1>Employee Create Form</h1>
-            <form method="post" @submit.prevent="submitform" id="form">
+            <form method="post" @submit.prevent="updateform" id="form">
                 <!-- NAME -->
                 <div>
                     <strong for="name">Name:</strong
@@ -27,6 +27,7 @@
                 <div class="form-group">
                     <strong for="address">Address</strong>
                     <input
+                        v-model="form.address"
                         type="text-area"
                         class="form-control"
                         id="address"
@@ -104,62 +105,74 @@
                 <!-- image -->
                 <div>
                     <strong for="image" class="form-group">Image:</strong>
+                    <img
+                        :src="
+                            'http://localhost/laravel10-vue3/public/storage/uploads/' +
+                            form.image
+                        "
+                        width="200"
+                    />
 
                     <input type="file" name="image" value="" />
                 </div>
                 <!-- cv -->
                 <div>
                     <strong for="cv" class="form-group">CV:</strong>
+
+                    <a
+                        :href="
+                            'http://localhost/laravel10-vue3/public/storage/uploads/' +
+                            form.cv
+                        "
+                        class="btn btn-success"
+                    >
+                        cv</a
+                    >
+
+                    <br />
+
                     <input type="file" name="cv" value="" />
                 </div>
 
-                <div class="row">
-                    <strong>SKILL:</strong>
-                    <div class="form-group">
-                        <label for="PHP">
+                <br />
+                <strong>Skill:</strong>
+                <div v-for="(item, index) in Skills" :key="index">
+                    <div class="form-check form-check-inline">
+                        <span v-if="form.Skill.includes(item)">
                             <input
-                                v-model="form.Skill"
+                                class="form-check-input"
                                 type="checkbox"
-                                id="PHP"
-                                value="PHP"
                                 name="Skill[]"
-                            />PHP
-                        </label>
-                        <br />
-                        <label for="HTML">
+                                id="inlineCheckbox1"
+                                :value="item"
+                                :checked="true"
+                            />
+                            <label
+                                class="form-check-label"
+                                for="inlineCheckbox1"
+                                >{{ item }}</label
+                            >
+                        </span>
+                        <span v-else>
                             <input
-                                v-model="form.Skill"
+                                class="form-check-input"
                                 type="checkbox"
-                                id="HTML"
-                                value="HTML"
                                 name="Skill[]"
-                            />HTML
-                        </label>
-                        <br />
-                        <label for="laravel">
-                            <input
-                                v-model="form.Skill"
-                                type="checkbox"
-                                id="laravel"
-                                value="laravel"
-                                name="Skill[]"
-                            />Laravel
-                        </label>
-                        <br />
-                        <label for="vue">
-                            <input
-                                v-model="form.Skill"
-                                type="checkbox"
-                                id="vue"
-                                value="vue"
-                                name="Skill[]"
-                            />vue
-                        </label>
+                                id="inlineCheckbox1"
+                                :value="item"
+                                :checked="false"
+                            />
+                            <label
+                                class="form-check-label"
+                                for="inlineCheckbox1"
+                                >{{ item }}</label
+                            >
+                        </span>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block mb-4">
-                    Submit
+                    update
                 </button>
             </form>
         </div>
@@ -168,12 +181,11 @@
 </template>
 <script>
 import axios from "axios";
-import employee_list from "./employee_list.vue";
 export default {
-    name: "create",
-    components: { employee_list },
+    name: "employee_edit",
     data() {
         return {
+            userid: "",
             form: {
                 name: "",
                 email: "",
@@ -186,27 +198,55 @@ export default {
                 cv: "",
             },
             // error: {},
+            Skills: ["PHP", "HTML", "laravel", "vue"],
         };
     },
+    mounted() {
+        this.updatedata(this.$route.params.id);
+        // this.updateform(this.$route.params.id);
+        this.userid = this.$route.params.id;
+        // console.log(updateid);
+    },
     methods: {
-        submitform() {
-            console.log("emloyee ache??");
+        updatedata(updateid) {
+            axios
+                .get(
+                    "http://localhost/laravel10-vue3/public/employee/editdata/" +
+                        updateid
+                )
+                .then((res) => {
+                    this.form = res.data;
+                    // console.log("data ache");
+
+                    this.form.name = res.data.name;
+                    this.form.email = res.data.email;
+                    this.form.gender = res.data.gender;
+                    this.form.Skill = JSON.parse(res.data.Skills);
+                    this.form.address = res.data.address;
+                    this.form.age = res.data.age;
+                    this.form.phone = res.data.phone;
+                });
+        },
+
+        updateform() {
+            // console.log(updateid);
             var form = document.getElementById("form");
             var formData = new FormData(form);
+
+            console.log("ache");
             axios
                 .post(
-                    "http://localhost/laravel10-vue3/public/employee_create",
+                    "http://localhost/laravel10-vue3/public/employee_updatedata/" +
+                        this.userid,
                     formData
                 )
                 .then((res) => {
-                    console.log("ache", res.data);
-                    alert("Employee Created Successfully");
-                    // console.log('ok',res.data.user_form.Degree);
+                    // console.log(res.data);
 
-                    this.$router.push({ path: "/employee/list" });
+                    alert("profile updated", this.form.name);
+
                     // this.$router.push({ path: "/user" });
                 });
-
             // this.validate();
         },
         // validate() {
@@ -225,6 +265,7 @@ export default {
         //     if (this.user_form.Degree == "") {
         //         this.error.Degree = "Degree is required";
         //     }
+
         // },
     },
 };

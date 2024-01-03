@@ -43,3 +43,6 @@ Route::get('/Customer_delete/{id}',[CustomerController::class,'deletedata'])->na
 //employee
 Route::post('/employee_create',[EmployeeController::class,'employee_create'])->name('employee.create');
 Route::get('/get_employee_data',[EmployeeController::class,'employee_data'])->name('employee.getdata');
+Route::get('/employee/editdata/{id}',[EmployeeController::class, 'emloyee_editdata'])->name('employee_edit.data');
+Route::post('/employee_updatedata/{id}',[EmployeeController::class,'employee_update'])->name('employee_update.data');
+Route::get('/employee_delete/{id}',[EmployeeController::class,'employee_delete'])->name('employee.delete');

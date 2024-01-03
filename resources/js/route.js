@@ -12,6 +12,8 @@ import user_edit from "./components/user_edit.vue";
 import create from "./components/employee/create.vue";
 // import list from "./components/employee/employee_list.vue";
 import employee_list from "./components/employee/employee_list.vue";
+import employee_edit from "./components/employee/employee_edit.vue";
+
 const routes = [
     {
         name: 'home',
@@ -82,7 +84,13 @@ const routes = [
         component: employee_list
 
     },
-    
+    {
+        name: 'employee_edit',
+        path: '/employee/:id/edit',
+        component: employee_edit
+
+    },
+  
 
 ];
 const router = createRouter({
