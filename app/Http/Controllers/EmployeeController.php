@@ -22,7 +22,6 @@ class EmployeeController extends Controller
           
         ]);
 
-
         $employee_image = '';
         if ($image = $request->hasFile('image')) {
             $image = $request->file('image');
@@ -50,5 +49,11 @@ class EmployeeController extends Controller
 
         ]);
         // dd($request->all());
+    }
+    public function employee_data()
+    {
+        $employee = Employee::all();
+        // dd($employee);
+        return response()->json($employee);
     }
 }

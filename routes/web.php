@@ -42,3 +42,4 @@ Route::get('/Customer_delete/{id}',[CustomerController::class,'deletedata'])->na
 
 //employee
 Route::post('/employee_create',[EmployeeController::class,'employee_create'])->name('employee.create');
+Route::get('/get_employee_data',[EmployeeController::class,'employee_data'])->name('employee.getdata');

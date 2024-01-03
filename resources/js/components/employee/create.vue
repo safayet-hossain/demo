@@ -110,7 +110,6 @@
                 <!-- cv -->
                 <div>
                     <strong for="cv" class="form-group">CV:</strong>
-
                     <input type="file" name="cv" value="" />
                 </div>
 
@@ -190,10 +189,9 @@ export default {
     },
     methods: {
         submitform() {
-            console.log("ok");
+            console.log("emloyee ache??");
             var form = document.getElementById("form");
             var formData = new FormData(form);
-
             axios
                 .post(
                     "http://localhost/laravel10-vue3/public/employee_create",
@@ -201,17 +199,13 @@ export default {
                 )
                 .then((res) => {
                     console.log("ache", res.data);
-                    alert(" created successfully");
+                    alert("Employee Created Successfully");
                     // console.log('ok',res.data.user_form.Degree);
-                    // /userlist
+                  
                     // this.$router.push({ path: "/userlist" });
                     // this.$router.push({ path: "/user" });
                 });
-            //     .catch(error => {
-            //     this.errors = error.res.data;
-            //     console.log('ok');
-
-            // });
+          
 
             // this.validate();
         },

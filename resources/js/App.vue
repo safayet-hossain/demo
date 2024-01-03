@@ -21,7 +21,7 @@
   <!-- <router-link to="/user">user</router-link><br>
   <router-link to="/userlist" >UserList</router-link> -->
   
-  <table-list :data="example_object"></table-list>
+  <!-- <table-list :data="example_object"></table-list> -->
 
   <router-view></router-view>
 </template>
